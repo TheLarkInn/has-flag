@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "has-flag"
+name = "has-env-flag"
 version = "0.1.0"
