@@ -1,0 +1,11 @@
+[package]
+name = "has-flag"
+description = "Checks if argv has a specific flag. Rust implementation of sindreshorus/has-flag"
+version = "0.1.0"
+authors = ["Sean Larkin <sean.larkin1@gmail.com>"]
+editions = "2021"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = 'abort'
