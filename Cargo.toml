@@ -2,10 +2,9 @@
 name = "has-flag"
 description = "Checks if argv has a specific flag. Rust implementation of sindreshorus/has-flag"
 version = "0.1.0"
-authors = ["Sean Larkin <sean.larkin1@gmail.com>"]
+authors = ["Sean Larkin <TheLarkInn@users.noreply.github.com>"]
 editions = "2021"
+repository = "https://github.com/TheLarkInn/has-flag"
 
-[profile.release]
-lto = true
-codegen-units = 1
-panic = 'abort'
+categories = ["command-line-utilities"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
