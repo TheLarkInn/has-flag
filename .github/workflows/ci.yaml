@@ -31,7 +31,8 @@ jobs:
         with: 
           target: ${{ matrix.target }}
           toolchain: ${{ matrix.toolchain }}
-        run: ${{ matrix.deps }}
+      - run: ${{ matrix.deps }}
       
-      - name: Run Tests
-        run: cargo test --target ${{ matrix.target }}
+      - uses: actions-rs/cargo@v1.0.1
+        name: Run Tests
+      - run: cargo test --target ${{ matrix.target }}
