@@ -21,17 +21,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@master
         name: Install toolchain
         with: 
-<<<<<<< HEAD
           toolchain: ${{ matrix.rust }}
       - run: cargo test
       - run: cargo test --no-default-features
       - run: cargo test --features span-locations
-=======
-          target: ${{ matrix.target }}
-          toolchain: ${{ matrix.toolchain }}
-      - run: ${{ matrix.deps }}
-      
-      - uses: actions-rs/cargo@v1.0.1
-        name: Run Tests
-      - run: cargo test --target ${{ matrix.target }}
->>>>>>> 74132a5bf71135b4852b976bf010307d6105b7df
