@@ -18,10 +18,60 @@ fn _has_flag<I: Iterator<Item = String>>(mut args: I, flag: &str) -> bool {
     position.is_some() && (!terminator_position.is_some() || position < terminator_position)
 }
 
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
-//     #[test]
-//     fn all_args() {
-//     }
-// }
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn args_without_double_dash_input() {
+        assert!(_has_flag(
+            vec!["--unicorn", "--foo", "-f"]
+                .into_iter()
+                .map(ToString::to_string),
+            "unicorn"
+        ));
+    }
+
+    #[test]
+    fn args_with_double_dash_input() {
+        assert!(_has_flag(
+            vec!["--unicorn", "--foo", "-f"]
+                .into_iter()
+                .map(ToString::to_string),
+            "--unicorn"
+        ));
+    }
+    
+    #[test]
+    fn args_with_single_dash_input() {
+        assert!(_has_flag(
+            vec!["--unicorn", "--foo", "-f"]
+                .into_iter()
+                .map(ToString::to_string),
+            "-f"
+        ));
+    }
+
+    
+    #[test]
+    fn args_without_single_dash_input() {
+        assert!(_has_flag(
+            vec!["--unicorn", "--foo", "-f"]
+                .into_iter()
+                .map(ToString::to_string),
+            "f"
+        ));
+    }
+
+    
+    #[test]
+    fn args_that_doesnt_exist() {
+        assert!(!_has_flag(
+            vec!["--unicorn", "--foo", "-f"]
+                .into_iter()
+                .map(ToString::to_string),
+            "rainbow"
+        ));
+    }
+
+    
+}
