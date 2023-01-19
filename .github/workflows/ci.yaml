@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [ master ]
+  push: 
+    branches: [ master ]
+  
+permissions: 
+  contents: read
+
+jobs: 
+  test: 
+  runs-on: ${{ matrix.os }}
+  strategy:
+    fail-fast: false
+    matrix: 
+    include:
+      - os: ubuntu-latest
+        target: x86_64-unknown-linux-gnu
+        toolchain: stable
+      - os: macos-latest
+        target: x86_64-apple-darwin
+        toolchain: stable
+        # TODO: also aarch64 / M1
+      - os: windows-latest
+        target: x86_64-pc-windows-gnu
+        toolchain: stable
+    
+    steps:
+      - name: Install toolchain
+        uses: dtolnay/rust-toolchain@master
+        with: 
+          target: ${{ matrix.target }}
+          toolchain: ${{ matrix.toolchain }}
+      - run: ${{ matrix.deps }}
+      
+      - name: Run Tests
+        run: |
+          cargo test --target ${{ matrix.target }}
