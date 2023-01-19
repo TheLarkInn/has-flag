@@ -40,7 +40,7 @@ mod tests {
             "--unicorn"
         ));
     }
-    
+
     #[test]
     fn args_with_single_dash_input() {
         assert!(_has_flag(
@@ -51,7 +51,6 @@ mod tests {
         ));
     }
 
-    
     #[test]
     fn args_without_single_dash_input() {
         assert!(_has_flag(
@@ -62,7 +61,6 @@ mod tests {
         ));
     }
 
-    
     #[test]
     fn args_that_doesnt_exist() {
         assert!(!_has_flag(
@@ -72,6 +70,4 @@ mod tests {
             "rainbow"
         ));
     }
-
-    
 }
