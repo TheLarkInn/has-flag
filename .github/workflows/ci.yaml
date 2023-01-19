@@ -33,5 +33,6 @@ jobs:
           toolchain: ${{ matrix.toolchain }}
       - run: ${{ matrix.deps }}
       
+      - uses: actions-rs/cargo@v1.0.1
       - name: Run Tests
         run: cargo test --target ${{ matrix.target }}
