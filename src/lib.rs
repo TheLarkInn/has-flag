@@ -2,7 +2,7 @@ pub fn has_flag(flag: &str) -> bool {
     _has_flag(std::env::args(), flag)
 }
 
-fn _has_flag<I: Iterator<Item = String>>(mut args: I, flag: &str) -> bool {
+fn _has_flag<I: Iterator<Item = String>>(args: I, flag: &str) -> bool {
     let prefix = if flag.starts_with('-') {
         ""
     } else {
@@ -13,18 +13,8 @@ fn _has_flag<I: Iterator<Item = String>>(mut args: I, flag: &str) -> bool {
         }
     };
 
-    let position = args.position(|arg| arg == format!("{}{}", prefix, flag));
-    let terminator_position = args.position(|arg| arg == "--");
-
-    position.is_some()
-        && (terminator_position.is_none()
-            || arg_is_before_terminator(position, terminator_position))
-}
-
-fn arg_is_before_terminator(position: Option<usize>, terminator_position: Option<usize>) -> bool {
-    position.is_some()
-        && terminator_position.is_some()
-        && position.unwrap() < terminator_position.unwrap()
+    let formatted_flag = format!("{}{}", prefix, flag);
+    args.take_while(|arg| arg != "--").any(|arg| arg == formatted_flag)
 }
 
 #[cfg(test)]
