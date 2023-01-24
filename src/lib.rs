@@ -5,12 +5,10 @@ pub fn has_flag(flag: &str) -> bool {
 fn _has_flag<I: Iterator<Item = String>>(args: I, flag: &str) -> bool {
     let prefix = if flag.starts_with('-') {
         ""
+    } else if flag.len() == 1 {
+        "-"
     } else {
-        if flag.len() == 1 {
-            "-"
-        } else {
-            "--"
-        }
+        "--"
     };
 
     let formatted_flag = format!("{}{}", prefix, flag);
