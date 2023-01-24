@@ -12,7 +12,8 @@ fn _has_flag<I: Iterator<Item = String>>(args: I, flag: &str) -> bool {
     };
 
     let formatted_flag = format!("{}{}", prefix, flag);
-    args.take_while(|arg| arg != "--").any(|arg| arg == formatted_flag)
+    args.take_while(|arg| arg != "--")
+        .any(|arg| arg == formatted_flag)
 }
 
 #[cfg(test)]
